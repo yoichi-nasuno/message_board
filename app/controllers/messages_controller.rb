@@ -24,12 +24,27 @@ class MessagesController < ApplicationController
   end
 
   def edit
+    @message = Message.find(params[:id])
   end 
   
   def update
+    @message = Message.find(params[:id])
+    
+    if @message.update(message_params)
+      flash[:success] = 'Message は正常に更新されました'
+      redirect_to @message
+    else
+      flash.now[:danger] = 'message は更新されませんでした'
+      render :edit
+    end 
   end 
   
   def destroy
+    @message = Message.find(params[:id])
+    @message.destroy
+    
+    flash[:success] = 'Message は正常に削除されました'
+    redirect_to messages_url
   end 
   
   private
