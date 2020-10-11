@@ -48,7 +48,7 @@ class MessagesController < ApplicationController
     flash[:success] = 'Message は正常に削除されました'
     redirect_to messages_url
   end 
-  
+
   private
   
   def set_message
